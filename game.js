@@ -15,9 +15,9 @@ let enemyInterval, updateInterval;
 let gameRunning = false; // Variable para verificar si el juego está corriendo
 
 // Configuración del botón de reinicio
-restartButton.textContent = "Volver a inicio";
+restartButton.textContent = "Tornar a jugar";
 restartButton.classList.add("neon-button"); // Añadir la clase "neon-button"
-restartButton.style.marginTop = "20px";
+restartButton.style.marginTop = "100px";
 restartButton.style.display = "none"; // Oculto al inicio
 victoryScreen.appendChild(restartButton);
 
@@ -58,7 +58,7 @@ function startGame() {
     clearInterval(updateInterval);
 
     // Iniciar nuevos intervalos
-    enemyInterval = setInterval(createEnemy, 2000);
+    enemyInterval = setInterval(createEnemy, 1500);
     updateInterval = setInterval(update, 16);
     gameRunning = true; // El juego ha comenzado
 
