@@ -10,7 +10,7 @@ let playerX = 50;
 let bullets = [];
 let enemies = [];
 let score = 0;
-const targetScore = 100;
+const targetScore = 20;
 let enemyInterval, updateInterval;
 let gameRunning = false; // Variable para verificar si el juego está corriendo
 
@@ -68,31 +68,7 @@ function startGame() {
 }
 
 function restartGame() {
-    // Ocultar la pantalla de victoria y mostrar la de inicio
-    victoryScreen.style.display = 'none';
-    startScreen.style.display = 'flex';
-    
-    // Ocultar el botón de reinicio
-    restartButton.style.display = "none";
-    
-    // Limpiar balas y enemigos
-    bullets.forEach(bullet => bullet.remove());
-    enemies.forEach(enemy => enemy.remove());
-    bullets = [];
-    enemies = [];
-    
-    // Restablecer la puntuación
-    score = 0;
-    scoreElement.textContent = `Puntuación: ${score}`;
-    
-    // Limpiar cualquier intervalo anterior
-    clearInterval(enemyInterval);
-    clearInterval(updateInterval);
-    gameRunning = false; // El juego ha terminado, no debe ejecutarse más
-
-    // Detener la música de fondo y reiniciarla
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0; // Volver a empezar desde el inicio
+    location.reload();
 }
 
 function handleTouchStart(e) {

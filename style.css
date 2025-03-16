@@ -157,18 +157,19 @@ body {
     background: #0c2340;
     box-shadow: 0 0 30px #00fff9;
     margin-bottom: 30px;
+    animation: hologram 2s infinite alternate;
 }
 
 #photo {
     width: 250px;
     height: 250px;
     border-radius: 10px;
-    background: url('/img/familia.jpg') center/cover;
+    background: url('/img/familia.jpeg') center/cover;
     z-index: 3;
 }
 
 .hologram-text {
-    font-size: 2,9em;
+    font-size: 1,8em;
     text-shadow: 0 0 10px #00fff9,
                 0 0 20px #00fff9,
                 0 0 30px #00fff9;
@@ -187,7 +188,7 @@ body {
     background: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjhsb294MjhqeWdoOThrbDRzc2UwYzlwZnJpbzhuMnc1YW00d2d4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MViYNpI0wx69zX7j7w/giphy.gif') center/cover;
     pointer-events: none;
     opacity: 0.5;
-    z-index: 1;
+    z-index: -1;
 }
 
 #player {
@@ -198,4 +199,18 @@ body {
     width: 60px;
     height: 60px;
     z-index: 999;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px #0ff;
 }
