@@ -10,7 +10,7 @@ let playerX = 50;
 let bullets = [];
 let enemies = [];
 let score = 0;
-const targetScore = 20;
+const targetScore = 50;
 let enemyInterval, updateInterval;
 let gameRunning = false; // Variable para verificar si el juego está corriendo
 
@@ -58,7 +58,7 @@ function startGame() {
     clearInterval(updateInterval);
 
     // Iniciar nuevos intervalos
-    enemyInterval = setInterval(createEnemy, 1500);
+    enemyInterval = setInterval(createEnemy, 1000);
     updateInterval = setInterval(update, 16);
     gameRunning = true; // El juego ha comenzado
 
@@ -119,12 +119,13 @@ const images = [
     '/img/familia1.jpeg',
     '/img/familia2.jpeg',
     '/img/familia3.jpeg',
-    '/img/familia4.jpeg'
+    '/img/familia4.jpeg',
 
 ];
 let currentImageIndex = 0;
+let slideshowInterval;
 
-// Aplicar la primera imagen
+// Configuración inicial del photoDiv
 photoDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
 photoDiv.style.backgroundSize = 'cover';
 photoDiv.style.backgroundPosition = 'center';
@@ -137,13 +138,22 @@ function changeImage() {
         currentImageIndex = (currentImageIndex + 1) % images.length;
         photoDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
         photoDiv.style.opacity = '1'; // Hacer aparecer la nueva imagen
+
+        // Si hemos vuelto a la primera imagen, mostrar el botón
+        if (currentImageIndex === 0) {
+            clearInterval(slideshowInterval); // Detener el cambio de imágenes
+            setTimeout(() => {
+                restartButton.style.display = "block"; // Mostrar el botón
+            }, 1000);
+        }
     }, 1000);
 }
 
 // Iniciar el cambio de imágenes cuando se gana
 function startImageSlideshow() {
+    restartButton.style.display = "none"; // Ocultar el botón al inicio
     changeImage(); // Cambia la imagen una vez al inicio
-    setInterval(changeImage, 5000); // Sigue cambiando cada 3 segundos
+    slideshowInterval = setInterval(changeImage, 3000); // Sigue cambiando cada 3 segundos
 }
 
 // Llamar a la función cuando se gana
@@ -174,7 +184,7 @@ function update() {
                 if (score >= targetScore) {
                     gameContainer.style.display = 'none';
                     victoryScreen.style.display = 'flex';
-                    restartButton.style.display = "block";
+                    restartButton.style.display = "none"; // Ocultar el botón al ganar
                     gameRunning = false;
                     clearInterval(enemyInterval);
                     clearInterval(updateInterval);
@@ -200,3 +210,4 @@ function update() {
         }
     });
 }
+
