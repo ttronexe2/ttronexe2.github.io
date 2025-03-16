@@ -49,7 +49,7 @@ function startGame() {
     }
 
     score = 0;
-    scoreElement.textContent = `Puntuación: ${score}`;
+    scoreElement.textContent = `Puntuació: ${score}`;
     bullets = [];
     enemies = [];
 
@@ -113,9 +113,42 @@ function createEnemy() {
     enemies.push(enemy);
     enemy.style.animation = `enemy-float ${2 + Math.random() * 2}s ease-in-out infinite`;
 }
+const photoDiv = document.getElementById('photo');
+const images = [
+    '/img/familia.jpeg',
+    '/img/familia1.jpeg',
+    '/img/familia2.jpeg',
+    '/img/familia3.jpeg',
+    '/img/familia4.jpeg'
 
+];
+let currentImageIndex = 0;
+
+// Aplicar la primera imagen
+photoDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
+photoDiv.style.backgroundSize = 'cover';
+photoDiv.style.backgroundPosition = 'center';
+photoDiv.style.transition = 'opacity 1s ease-in-out';
+
+// Función para cambiar la imagen con desvanecimiento
+function changeImage() {
+    photoDiv.style.opacity = '0'; // Desvanecer la imagen
+    setTimeout(() => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        photoDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        photoDiv.style.opacity = '1'; // Hacer aparecer la nueva imagen
+    }, 1000);
+}
+
+// Iniciar el cambio de imágenes cuando se gana
+function startImageSlideshow() {
+    changeImage(); // Cambia la imagen una vez al inicio
+    setInterval(changeImage, 5000); // Sigue cambiando cada 3 segundos
+}
+
+// Llamar a la función cuando se gana
 function update() {
-    if (!gameRunning) return; // No actualizar si el juego no está corriendo
+    if (!gameRunning) return;
 
     bullets.forEach((bullet, index) => {
         const bottom = parseInt(bullet.style.bottom) || 70;
@@ -136,17 +169,17 @@ function update() {
                 enemies.splice(enemyIndex, 1);
 
                 score += 10;
-                scoreElement.textContent = `Puntuación: ${score}`;
+                scoreElement.textContent = `Puntuació: ${score}`;
 
                 if (score >= targetScore) {
                     gameContainer.style.display = 'none';
                     victoryScreen.style.display = 'flex';
-                    restartButton.style.display = "block"; // Mostrar el botón al ganar
-
-                    // Detener el juego al ganar
+                    restartButton.style.display = "block";
                     gameRunning = false;
                     clearInterval(enemyInterval);
                     clearInterval(updateInterval);
+                    
+                    startImageSlideshow(); // Iniciar el cambio de imágenes
                 }
             }
         });
