@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¡Feliz Día del Padre!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <div id="startScreen">
+        <div class="title-container">
+            <h1 class="title-3d">FELIZ DÍA<br>DEL PADRE</h1>
+            <button id="startButton" class="neon-button">¡DESPEGAR!</button>
+        </div>
+    </div>
+
+    <div id="gameContainer">
+        <div id="score" class="neon-text">PUNTOS: 0</div>
+        <div id="playerIMG"><img src="/img/points.png" class="spaceship"></div>
+        <div id="player">
+            <img src="/img/spaceship.png" class="spaceship">
+        </div>        
+    </div>
+
+    <div id="victoryScreen">
+        <div class="photo-frame">
+            <div id="photo"></div>
+        </div>
+        <h1 class="hologram-text">¡Feliz Día del Padre!</h1>
+        <div class="fireworks"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

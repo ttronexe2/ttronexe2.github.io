@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    touch-action: none;
+    color: white;
+}
+
+/* Fondos animados */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000 url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGxrbjFzdDhvdnhhbWtoMHhyZjZoOGZ0YWxjcjZ6ejh4Nm5jNGQ5MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/D35fOVm9gSQ91icJeR/giphy.gif') repeat top center;
+    z-index: 1;
+}
+
+.twinkling {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3VrY2UyNHJvaWF4b2J2ZHp0NXFodmpsNzRiY2NtNXc4bTByem42MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 2;
+}
+
+@keyframes twinkling {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+/* Pantalla inicial */
+#startScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.title-container {
+    text-align: center;
+    text-shadow: 0 0 10px #00fff9;
+}
+
+.title-3d {
+    font-size: 3.2em;
+    color: #ffd700;
+    text-shadow: 3px 3px 0 #ff0000,
+                -3px -3px 0 #0000ff;
+    transform: perspective(300px) rotateX(25deg);
+    margin-bottom: 50px;
+}
+
+.neon-button {
+    padding: 20px 40px;
+    font-size: 1.5em;
+    background: #0c2340;
+    border: 3px solid #00fff9;
+    color: #00fff9;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0 0 15px #00fff9;
+}
+
+.neon-button:hover {
+    background: #00fff9;
+    color: #0c2340;
+    box-shadow: 0 0 30px #00fff9;
+}
+
+/* Juego */
+#gameContainer {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+#playerIMG{
+    margin-top: 10px;
+}
+
+.spaceship {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 10px #00fff9);
+    animation: float 2s ease-in-out infinite;
+    z-index: 999;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bullet {
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+    animation: bullet-glow 0.5s infinite alternate;
+}
+
+@keyframes bullet-glow {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+.enemy {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url('/img/enemy.png') center/contain no-repeat;
+    animation: enemy-float 2s ease-in-out infinite;
+}
+
+@keyframes enemy-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(5deg); }
+    75% { transform: translateY(5px) rotate(-5deg); }
+}
+
+#score {
+    position: fixed;
+    top: 20px;
+    left: 75px;
+    font-size: 1.5em;
+    text-shadow: 0 0 10px #00fff9;
+}
+
+/* Pantalla final */
+#victoryScreen {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 4;
+}
+
+.photo-frame {
+    border: 5px solid #00fff9;
+    border-radius: 15px;
+    padding: 10px;
+    background: #0c2340;
+    box-shadow: 0 0 30px #00fff9;
+    margin-bottom: 30px;
+}
+
+#photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    background: url('/img/familia.jpg') center/cover;
+    z-index: 3;
+}
+
+.hologram-text {
+    font-size: 2,9em;
+    text-shadow: 0 0 10px #00fff9,
+                0 0 20px #00fff9,
+                0 0 30px #00fff9;
+    animation: hologram 2s infinite alternate;
+}
+
+@keyframes hologram {
+    from { opacity: 0.8; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.05); }
+}
+
+.fireworks {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjhsb294MjhqeWdoOThrbDRzc2UwYzlwZnJpbzhuMnc1YW00d2d4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MViYNpI0wx69zX7j7w/giphy.gif') center/cover;
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+#player {
+    position: absolute;
+    bottom: 50px;  
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 999;
+}
